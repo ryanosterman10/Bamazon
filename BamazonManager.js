@@ -50,8 +50,53 @@ inquirer.prompt([
 
 			case "View Products for Sale":
 				viewProducts();
+				connection.end();
 				break;
 
-			
+			case "View Low Inventory":
+				connection.query('SELECT * FROM Products WHERE StockQuantity < 5', function(err, res){
+					if(err){
+						throw err;
+					}
+					for(var i = 0; i < res.length; i++){
+						console.log("---------------------------------------");
+						console.log("Item ID: " + res[i].ItemID + "\nProduct Name: " + res[i].ProductName + "\nQuantity Left: " + res[i].StockQuantity);
+						console.log("---------------------------------------");
+					}
+				});
+				connection.end();
+				break;
+
+			case "Add to Inventory":
+				inquirer.prompt([
+						{
+							type: "input",
+							message: "Type the ID of the item you would like to add inventory for",
+							name: "addID"
+						},
+						{
+							type: "input",
+							message: "How many units would you like to add?",
+							name: "amount"
+						}
+					]).then(function(stock){
+						connection.query('SELECT * FROM Products WHERE ItemID =' + stock.addID, function(err, res){
+							if(err){
+								throw err;
+							}
+							console.log("You added: " + stock.amount + " " + res[0].ProductName);
+							connection.query('UPDATE Products SET StockQuantity = ? WHERE ItemID = ?', [res[0].StockQuantity + Number(stock.amount), stock.addID],
+							function(err, res){
+								if(err){
+									throw err;
+								}
+								viewProducts();
+							
+							});
+						});
+					});
+					connection.end();
+					break;
+
 		}
 	})
