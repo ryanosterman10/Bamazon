@@ -33,4 +33,4 @@
 
 **Add new item**
 
-![Add new item](/images/noItem.png)
+![Add new item](/images/addItem.png)
