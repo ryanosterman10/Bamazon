@@ -20,7 +20,7 @@ connection.connect(function(err){
 	if(err){
 		throw err;
 	}
-	console.log("connected as id", connection.threadId);
+	// console.log("connected as id", connection.threadId);
 });
 
 function viewProducts(){
@@ -37,6 +37,8 @@ function viewProducts(){
 }
 
 // viewProducts();
+
+console.log("-----Bamazon Manager-----");
 
 inquirer.prompt([
 		{
@@ -97,6 +99,35 @@ inquirer.prompt([
 					});
 					connection.end();
 					break;
+
+				case "Add New Product":
+					inquirer.prompt([
+							{
+								type: "input",
+								message: "What item would you like to add?",
+								name: "ProductName"
+							},
+							{
+								type: "input",
+								message: "What is the price for this item?",
+								name: "Price"
+							},
+							{
+								type: "input",
+								message: "How many units would you like to add?",
+								name: "StockQuantity"
+							}
+						]).then(function(newProduct){
+							connection.query('INSERT INTO Products (ProductName, Price, StockQuantity) VALUES (?,?,?)', [newProduct.ProductName, newProduct.Price, newProduct.StockQuantity],
+								function(err, res){
+									if(err){
+										throw err;
+									}
+									console.log("Addition Successful");
+									viewProducts();
+								});
+						});
+						break;
 
 		}
 	})
