@@ -9,12 +9,28 @@
 
 **Prompts**
 
-![Database creation](/images/table1.png)
+![Prompts](/images/table1.png)
 
 **Order confirmation**
 
-![Database creation](/images/inStock.png)
+![Order confirmation](/images/inStock.png)
 
 **Out of stock**
 
-![Database creation](/images/noStock.png)
+![Out of stock](/images/noStock.png)
+
+**Manager View**
+
+![Manager view](/images/manager.png)
+
+**Low stock**
+
+![Low stock](/images/lowStock.png)
+
+**Add to stock**
+
+![Add to stock](/images/addStock.png)
+
+**Add new item**
+
+![Add new item](/images/noItem.png)

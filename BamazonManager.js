@@ -52,7 +52,7 @@ inquirer.prompt([
 
 			case "View Products for Sale":
 				viewProducts();
-				connection.end();
+				// connection.end();
 				break;
 
 			case "View Low Inventory":
@@ -66,7 +66,6 @@ inquirer.prompt([
 						console.log("---------------------------------------");
 					}
 				});
-				connection.end();
 				break;
 
 			case "Add to Inventory":
@@ -97,7 +96,6 @@ inquirer.prompt([
 							});
 						});
 					});
-					connection.end();
 					break;
 
 				case "Add New Product":
